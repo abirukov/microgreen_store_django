@@ -109,5 +109,3 @@ venv.bak/
 .idea
 
 .envrc
-/test.py
-/public/
