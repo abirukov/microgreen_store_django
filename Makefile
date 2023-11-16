@@ -6,6 +6,8 @@ endif
 
 export PYTHONPATH := $(shell pwd):$(PYTHONPATH)
 
+black:
+	black .
 isort:
 	isort .
 style:
@@ -15,4 +17,4 @@ types:
 test:
 	pytest --lf -vv --cov=microgreen_store --cov-branch .
 check:
-	make isort style types test
+	make black isort style types test
