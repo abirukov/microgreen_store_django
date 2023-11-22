@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from microgreen_store.views import IndexView
+
 urlpatterns = [
+    path("", IndexView.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path("users/", include(("users.urls", "users"), namespace="users")),
 ]
