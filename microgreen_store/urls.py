@@ -21,6 +21,16 @@ from microgreen_store.views import IndexView
 
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),
-    path("admin/", admin.site.urls),
+    path("about/", IndexView.as_view(), name="about"),
+    path("faq/", IndexView.as_view(), name="faq"),
     path("users/", include(("users.urls", "users"), namespace="users")),
+    path("products/", include(("products.urls", "products"), namespace="products")),
+    path("baskets/", include(("baskets.urls", "baskets"), namespace="baskets")),
+    path("orders/", include(("orders.urls", "orders"), namespace="orders")),
+    path("admin/", admin.site.urls),
 ]
+
+# handler400 =
+# handler403 =
+# handler404 =
+# handler500 =
