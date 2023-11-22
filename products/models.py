@@ -8,10 +8,10 @@ class Product(models.Model):
     description = models.CharField(_("description"), null=True)
 
     category = models.ForeignKey(
-        "Category",
+        "categories.Category",
         on_delete=models.SET_NULL,
         related_name="category",
         null=True,
     )
-    orders = models.ManyToManyField("Order", through="OrderProduct", related_name="products")
-    baskets = models.ManyToManyField("Basket", through="BasketProduct", related_name="products")
+    # orders = models.ManyToManyField("orders.Order", through="orders.OrderProduct", related_name="products")
+    # baskets = models.ManyToManyField("baskets.Basket", through="baskets.BasketProduct", related_name="products")

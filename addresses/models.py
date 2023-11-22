@@ -8,4 +8,4 @@ class Address(models.Model):
     house = models.CharField(_("house"), max_length=10, null=True)
     apartment = models.CharField(_("apartment"), max_length=10, null=True)
     comment = models.TextField(_("comment"), null=True)
-    user = models.ForeignKey("User", on_delete=models.PROTECT)
+    user = models.ForeignKey("users.User", on_delete=models.PROTECT)

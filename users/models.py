@@ -10,7 +10,7 @@ class User(AbstractUser):
     personal_code = models.CharField(_("personal_code"), max_length=10, null=True)
     referrer = models.ForeignKey(
         "self",
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )
