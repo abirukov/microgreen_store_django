@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from config import get_config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,14 +81,15 @@ WSGI_APPLICATION = "microgreen_store.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+config = get_config()
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": config.db_engine,
+        "NAME": config.db_name,
+        "USER": config.db_user,
+        "PASSWORD": config.db_password,
+        "HOST": config.db_host,
+        "PORT": config.db_port,
     },
 }
 
