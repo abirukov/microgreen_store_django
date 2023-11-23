@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from microgreen_store.views import IndexView
+from faq_questions.views import FaqView
+from microgreen_store.views import IndexView, AboutUsView
 
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),
-    path("about/", IndexView.as_view(), name="about"),
-    path("faq/", IndexView.as_view(), name="faq"),
+    path("about/", AboutUsView.as_view(), name="about"),
+    path("faq/", FaqView.as_view(), name="faq"),
     path("users/", include(("users.urls", "users"), namespace="users")),
     path("products/", include(("products.urls", "products"), namespace="products")),
     path("baskets/", include(("baskets.urls", "baskets"), namespace="baskets")),

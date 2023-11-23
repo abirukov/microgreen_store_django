@@ -16,3 +16,15 @@ class IndexView(View):
                 "products": products,
             }
         )
+
+
+class AboutUsView(View):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        products = Product.objects.all()
+        return render(
+            request,
+            "microgreen_store/about-us.html",
+            context={
+                "user": request.user,
+            }
+        )
