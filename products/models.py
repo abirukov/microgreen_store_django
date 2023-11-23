@@ -13,5 +13,6 @@ class Product(models.Model):
         related_name="category",
         null=True,
     )
-    # orders = models.ManyToManyField("orders.Order", through="orders.OrderProduct", related_name="products")
-    # baskets = models.ManyToManyField("baskets.Basket", through="baskets.BasketProduct", related_name="products")
+    
+    def __str__(self):
+        return self.title
