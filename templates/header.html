@@ -14,60 +14,20 @@
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="header-navigation">
                     <ul class="main-nav justify-content-start">
-                        <li class="has-submenu"><a href="{% url "home" %}">home</a>
+                        <li><a href="{% url "home" %}">home</a></li>
+                        <li><a href="{% url "about" %}">about</a></li>
+                        <li><a href="{% url "products:list" %}">Товары</a></li>
+                        <li class="has-submenu"><a href="#">Pages</a>
                             <ul class="submenu-nav">
-                                <li><a href="{% url "home" %}">Home</a></li>
+                                <li><a href="{% url "users:account" %}">My Account</a></li>
+                                <li><a href="{% url "faq" %}">Frequently Questions</a></li>
                             </ul>
                         </li>
-                        <li><a href="about-us.html">about</a></li>
-                        <li class="has-submenu position-static"><a href="product.html">shop</a>
-                            <ul class="submenu-nav-mega">
-                                <li><a href="#/" class="mega-title">Shop Layout</a>
-                                    <ul>
-                                        <li><a href="product.html">Shop 3 Column</a></li>
-                                        <li><a href="product-four-columns.html">Shop 4 Column</a></li>
-                                        <li><a href="product-left-sidebar.html">Shop Left Sidebar</a></li>
-                                        <li><a href="product-right-sidebar.html">Shop Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#/" class="mega-title">Single Product</a>
-                                    <ul>
-                                        <li><a href="product-details-normal.html">Single Product Normal</a></li>
-                                        <li><a href="product-details.html">Single Product Variable</a></li>
-                                        <li><a href="product-details-group.html">Single Product Group</a></li>
-                                        <li><a href="product-details-affiliate.html">Single Product Affiliate</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#/" class="mega-title">Others Pages</a>
-                                    <ul>
-                                        <li><a href="product-cart.html">Shopping Cart</a></li>
-                                        <li><a href="product-checkout.html">Checkout</a></li>
-                                        <li><a href="product-wishlist.html">Wishlist</a></li>
-                                        <li><a href="product-compare.html">Compare</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu"><a href="account-login.html">Pages</a>
-                            <ul class="submenu-nav">
-                                <li><a href="account-login.html">My Account</a></li>
-                                <li><a href="faq.html">Frequently Questions</a></li>
-                                <li><a href="page-not-found.html">Page Not Found</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{% url "home" %}">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-7 col-sm-6 col-lg-3">
                 <div class="header-action justify-content-end">
-                    <button class="header-action-btn ms-0" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
-                        <span class="icon">
-                            {% include "includes/icons/search-icon.html" %}
-                        </span>
-                    </button>
-
                     <button class="header-action-btn" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#AsideOffcanvasCart" aria-controls="AsideOffcanvasCart">
                         <span class="icon">
