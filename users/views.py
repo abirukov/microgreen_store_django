@@ -1,16 +1,22 @@
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import TemplateView, FormView
 
 from users.forms import RegisterForm, LoginForm
 
 
-class RegisterView(CreateView):
+class RegisterView(FormView):
     form_class = RegisterForm
     template_name = "users/register.html"
     success_url = reverse_lazy("users:account")
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form: RegisterForm) -> HttpResponseRedirect:
         user = form.save()
