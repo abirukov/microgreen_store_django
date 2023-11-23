@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <main class="main-content">
+        <!--== Start Page Header Area Wrapper ==-->
+        <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="page-header-st3-content text-center text-md-start">
+                            <ol class="breadcrumb justify-content-center justify-content-md-start">
+                                <li class="breadcrumb-item"><a class="text-dark" href="{% url "home" %}">Главная</a></li>
+                                <li class="breadcrumb-item active text-dark" aria-current="page">Product Detail</li>
+                            </ol>
+                            <h2 class="page-header-title">Product Detail</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <h5 class="showing-pagination-results mt-5 mt-md-9 text-center text-md-end">Showing Single
+                            Product</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Page Header Area Wrapper ==-->
+
+        <!--== Start Product Details Area Wrapper ==-->
+        <section class="section-space">
+            <div class="container">
+                <div class="row product-details">
+                    <div class="col-lg-6">
+                        <div class="product-details-thumb">
+                            <img src="{% static "assets/images/shop/product-details/2.webp"%}" width="570" height="693" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="product-details-content">
+                            <h5 class="product-details-collection">{{ product.category.title }}</h5>
+                            <h3 class="product-details-title">{{ product.title }}</h3>
+                            <p class="mb-7">{{ product.description }}</p>
+                            <div class="product-details-pro-qty">
+                                <div class="pro-qty">
+                                    <input type="text" title="Quantity" value="1">
+                                </div>
+                            </div>
+                            <div class="product-details-action">
+                                <h4 class="price">{{ product.price }} ₽</h4>
+                                <div class="product-details-cart-wishlist">
+                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#action-CartAddModal">Add to cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Details Area Wrapper ==-->
+    </main>
+{% endblock %}
