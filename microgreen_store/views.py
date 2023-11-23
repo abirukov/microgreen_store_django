@@ -2,7 +2,17 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from django.views import View
 
+from products.models import Product
+
 
 class IndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, "microgreen_store/index.html")
+        products = Product.objects.all()
+        return render(
+            request,
+            "microgreen_store/index.html",
+            context={
+                "user": request.user,
+                "products": products,
+            }
+        )
