@@ -127,46 +127,7 @@
       }
     });
 
-  // Related Product Slider Js
-    var productSliderCol4 = new Swiper('.related-product-slide-container', {
-      slidesPerView : 3,
-      slidesPerGroup: 1,
-      allowTouchMove: false,
-      spaceBetween: 30,
-      speed: 600,
-      breakpoints: {
-        1200: {
-          slidesPerView : 3,
-          allowTouchMove: true,
-          autoplay: {
-            delay: 5000,
-          },
-        },
-        992: {
-          slidesPerView : 3,
-          allowTouchMove: true,
-          autoplay: {
-            delay: 5000,
-          },
-        },
-        576: {
-          slidesPerView : 2,
-          allowTouchMove: true,
-          autoplay: {
-            delay: 5000,
-          },
-        },
-        0: {
-          slidesPerView : 1,
-          allowTouchMove: true,
-          autoplay: {
-            delay: 5000,
-          },
-        },
-      }
-    });
-
-  // Product Quantity JS
+    // Product Quantity JS
     var proQty = $(".pro-qty");
     proQty.append('<div class= "dec qty-btn">-</div>');
     proQty.append('<div class="inc qty-btn">+</div>');
@@ -200,41 +161,6 @@
       reviewFormRatingStar.css('width', (20 * reviewFormRatingVal) + '%')
     })
 
-  // Ajax Contact Form JS
-    var form = $('#contact-form');
-    var formMessages = $('.form-message');
-    $(form).submit(function(e) {
-      e.preventDefault();
-      var formData = form.serialize();
-      $.ajax({
-        type: 'POST',
-        url: form.attr('action'),
-        data: formData
-      }).done(function(response) {
-        // Make sure that the formMessages div has the 'success' class.
-        $(formMessages).removeClass('alert alert-danger');
-        $(formMessages).addClass('alert alert-success fade show');
-
-        // Set the message text.
-        formMessages.html("<button type='button' class='btn-close' data-bs-dismiss='alert'>&times;</button>");
-        formMessages.append(response);
-
-        // Clear the form.
-        $('#contact-form input,#contact-form textarea').val('');
-      }).fail(function(data) {
-        // Make sure that the formMessages div has the 'error' class.
-        $(formMessages).removeClass('alert alert-success');
-        $(formMessages).addClass('alert alert-danger fade show');
-
-        // Set the message text.
-        if (data.responseText === '') {
-          formMessages.html("<button type='button' class='btn-close' data-bs-dismiss='alert'>&times;</button>");
-          formMessages.append(data.responseText);
-        } else {
-          $(formMessages).text('Oops! An error occurred and your message could not be sent.');
-        }
-      });
-    });
 
   // scrollToTop Js
     function scrollToTop() {
