@@ -30,6 +30,7 @@ class RegisterView(FormView):
 class AppLoginView(LoginView):
     form_class = LoginForm
     template_name = "users/login.html"
+    next_page = "home"
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:

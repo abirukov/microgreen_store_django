@@ -6680,6 +6680,21 @@ hr {
   font-size: 13px;
 }
 
+.not-registered, .already-registered {
+  font-size: 20px;
+  color: #d25b5b;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+.not-registered:hover, .already-registered:hover {
+  text-decoration: underline;
+}
+
+.login-title {
+    display: flex;
+    justify-content: space-between;
+}
+
 /*----------------------------------------*/
 /*  Sidebar CSS
 /*----------------------------------------*/
