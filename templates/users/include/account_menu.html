@@ -1,12 +1,12 @@
 <div class="col-lg-3 col-md-4">
     <div class="my-account-tab-menu nav nav-tabs">
-        <a class="nav-link" href="{% url "users:account" %}">Dashboard</a>
-        <a class="nav-link" href="{% url "users:order_list" %}">Orders</a>
-        <a class="nav-link" href="{% url "users:address" %}">Address</a>
-        <a class="nav-link" href="{% url "users:detail" %}">Account Details</a>
+        <a class="nav-link" href="{% url "users:account" %}">О профиле</a>
+        <a class="nav-link" href="{% url "users:order_list" %}">Заказы</a>
+        <a class="nav-link" href="{% url "users:address" %}">Адреса</a>
+        <a class="nav-link" href="{% url "users:detail" %}">Изменить данные профиля</a>
         <form action="{% url "users:logout" %}" method="POST">
             {% csrf_token %}
-            <a class="nav-link" onclick="this.parentNode.submit()">Logout</a>
+            <a class="nav-link" onclick="this.parentNode.submit()">Выйти</a>
         </form>
     </div>
 </div>
