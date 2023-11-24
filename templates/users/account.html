@@ -1,4 +1,38 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
+    <main class="main-content">
+        {% include "users/include/page_header.html" %}
+
+        <!--== Start My Account Area Wrapper ==-->
+        <section class="my-account-area section-space">
+            <div class="container">
+                <div class="row">
+                    {% include "users/include/account_menu.html" %}
+                    <div class="col-lg-9 col-md-8">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="dashboad" role="tabpanel"
+                                 aria-labelledby="dashboad-tab">
+                                <div class="myaccount-content">
+                                    <h3>Dashboard</h3>
+                                    <div class="welcome">
+                                        <p>Hello,
+                                            <strong>Alex Tuntuni</strong>
+                                            (If Not <strong>Tuntuni !</strong>
+                                            <a href="account-login.html" class="logout"> Logout</a>
+                                            )
+                                        </p>
+                                    </div>
+                                    <p>From your account dashboard. you can easily check & view your recent orders,
+                                        manage your shipping and billing addresses and edit your password and account
+                                        details.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End My Account Area Wrapper ==-->
+    </main>
 {% endblock %}

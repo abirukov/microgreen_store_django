@@ -160,25 +160,25 @@ hr {
 }
 
 .section-space {
-  padding-bottom: 115px;
-  padding-top: 115px;
+  padding-bottom: 60px;
+  padding-top: 60px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .section-space {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .section-space {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 @media only screen and (max-width: 767px) {
   .section-space {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 
@@ -259,7 +259,6 @@ hr {
   line-height: 144px;
   letter-spacing: 0;
   position: relative;
-  text-transform: capitalize;
   transition: all 0s ease-out;
   -webkit-transition: all 0s ease-out;
   -moz-transition: all 0s ease-out;

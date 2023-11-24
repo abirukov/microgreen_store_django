@@ -34,7 +34,7 @@
                             <span> Привет, {{ user.username }}</span>
                         </a>
                     {% else %}
-                        <a class="header-action-btn" href="{% url "users:register" %}">
+                        <a class="header-action-btn" href="{% url "users:login" %}">
                             <span class="icon">
                                 {% include "includes/icons/account-icon.html" %}
                             </span>

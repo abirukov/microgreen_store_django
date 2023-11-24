@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <main class="main-content">
+    {% include "users/include/page_header.html" %}
+
+        <!--== Start My Account Area Wrapper ==-->
+        <section class="my-account-area section-space">
+            <div class="container">
+                <div class="row">
+                    {% include "users/include/account_menu.html" %}
+                    <div class="col-lg-9 col-md-8">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="myaccount-content">
+                                <h3>Orders</h3>
+                                <div class="myaccount-table table-responsive text-center">
+                                    <table class="table table-bordered">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Total</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Aug 22, 2018</td>
+                                            <td>Pending</td>
+                                            <td>$3000</td>
+                                            <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>July 22, 2018</td>
+                                            <td>Approved</td>
+                                            <td>$200</td>
+                                            <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>June 12, 2017</td>
+                                            <td>On Hold</td>
+                                            <td>$990</td>
+                                            <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End My Account Area Wrapper ==-->
+    </main>
+{% endblock %}
