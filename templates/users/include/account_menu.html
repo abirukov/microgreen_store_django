@@ -3,7 +3,6 @@
         <a class="nav-link" href="{% url "users:account" %}">О профиле</a>
         <a class="nav-link" href="{% url "users:order_list" %}">Заказы</a>
         <a class="nav-link" href="{% url "users:address" %}">Адреса</a>
-        <a class="nav-link" href="{% url "users:detail" %}">Изменить данные профиля</a>
         <form action="{% url "users:logout" %}" method="POST">
             {% csrf_token %}
             <a class="nav-link" onclick="this.parentNode.submit()">Выйти</a>

@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path, reverse_lazy
 
-from users.views import RegisterView, AccountView, AppLoginView, UserOrderList, UserAddressView, UserDetailView
+from users.views import RegisterView, AccountView, AppLoginView, UserOrderList, UserAddressView
 
 urlpatterns = [
     path("login/", AppLoginView.as_view(), name="login"),
@@ -10,5 +10,4 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(next_page=reverse_lazy('home')), name="logout"),
     path("order_list/", UserOrderList.as_view(), name="order_list"),
     path("address/", UserAddressView.as_view(), name="address"),
-    path("detail/", UserDetailView.as_view(), name="detail"),
 ]
