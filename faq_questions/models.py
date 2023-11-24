@@ -6,5 +6,5 @@ class FaqQuestion(models.Model):
     answer = models.CharField("answer")
     is_published = models.BooleanField("is_published")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.question[:20]

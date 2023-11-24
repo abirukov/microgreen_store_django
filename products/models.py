@@ -13,6 +13,6 @@ class Product(models.Model):
         related_name="category",
         null=True,
     )
-    
-    def __str__(self):
+
+    def __str__(self) -> str:
         return self.title

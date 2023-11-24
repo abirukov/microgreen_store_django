@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from faq_questions.views import FaqView
-from microgreen_store.views import IndexView, AboutUsView
+from microgreen_store.views import AboutUsView, IndexView
 
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),

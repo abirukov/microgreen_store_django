@@ -14,5 +14,5 @@ class FaqView(View):
             context={
                 "user": request.user,
                 "questions": questions,
-            }
+            },
         )

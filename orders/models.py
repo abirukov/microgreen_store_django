@@ -4,8 +4,8 @@ from django.utils.translation import gettext_lazy as _
 
 class OrderStatus(models.Model):
     title = models.CharField(_("title"))
-    
-    def __str__(self):
+
+    def __str__(self) -> str:
         return self.title
 
 
@@ -22,7 +22,7 @@ class Order(models.Model):
         null=True,
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.user_id}_{self.id}"
 
 
@@ -32,5 +32,5 @@ class OrderProduct(models.Model):
     quantity = models.DecimalField(_("quantity"), max_digits=20, decimal_places=2)
     unit_price = models.DecimalField(_("unit_price"), max_digits=20, decimal_places=2)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.order_id}_{self.product_id}"
