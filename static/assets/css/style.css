@@ -1,30 +1,5 @@
 @charset "UTF-8";
-/*-----------------------------------------------------------------------------------
 
-    Template Name: Brancy – Beauty eCommerce Website Template
-    Version: 1.0
-
------------------------------------------------------------------------------------
-
-    CSS INDEX
-    ===================
-
-    00 - Helpers (Variables & Mixins)
-    01 - Basic (Typography, Common Classes)
-        01.01 - Typrography
-        01.02 - Common Classes
-    02 - Layout (Header, Footer, Section, Main Container/Wrapper and Page Header Styles)
-        02.01 - Header
-        02.02 - Footer
-        02.03 - Main Content Wrapper, Sections & Section Heading
-    03 - Modules (Template Design Elements as Modules and Third party Plugins Custom Styles)
-    04 - Pages (Single Pages Specify Styles)
-
------------------------------------------------------------------------------------*/
-/*----------------------------------------*/
-/*  01. Template default CSS
-/*----------------------------------------*/
-/* Common Style */
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -1218,7 +1193,6 @@ hr {
   display: block;
   padding: 10px 15px;
   text-align: left;
-  text-transform: capitalize;
 }
 .my-account-tab-menu.nav-tabs .nav-link:last-child {
   border-bottom: 1px solid #e5e5e5;
