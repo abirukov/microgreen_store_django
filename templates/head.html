@@ -44,7 +44,10 @@
     <script defer src="{% static "assets/js/plugins/swiper-bundle.min.js" %}"></script>
     <script defer src="{% static "assets/js/plugins/fancybox.min.js" %}"></script>
     <script defer src="{% static "assets/js/plugins/jquery.nice-select.min.js" %}"></script>
-
+    {% csrf_token %}
+    <script>
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
     <!-- Custom Main JS -->
     <script defer src="{% static "assets/js/main.js" %}"></script>
 </head>

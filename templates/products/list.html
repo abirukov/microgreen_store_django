@@ -16,14 +16,12 @@
                                              alt="Image-HasTech">
                                     </a>
                                     <div class="product-action">
-                                        <button type="button" class="product-action-btn action-btn-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                            <i class="fa fa-expand"></i>
-                                        </button>
-                                        <button type="button" class="product-action-btn action-btn-cart"
+                                        <button type="button"
+                                                class="product-action-btn action-btn-cart"
+                                                data-product-id="{{ product.id }}"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#action-CartAddModal">
-                                            <span>Add to cart</span>
+                                            <span>В корзину</span>
                                         </button>
                                     </div>
                                 </div>
@@ -35,16 +33,13 @@
                                     </div>
                                 </div>
                                 <div class="product-action-bottom">
-                                    <button type="button" class="product-action-btn action-btn-cart"
+                                    <button type="button"
+                                            class="product-action-btn action-btn-cart"
+                                            data-product-id="{{ product.id }}"
                                             data-bs-toggle="modal"
                                             data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
+                                        <span>В корзину</span>
                                     </button>
-                                    <button type="button" class="product-action-btn action-btn-quick-view"
-                                            data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-
                                 </div>
                             </div>
                             <!--== End product Item ==-->
