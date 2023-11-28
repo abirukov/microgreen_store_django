@@ -195,13 +195,9 @@
         console.log(e)
         const modal = new bootstrap.Modal($('#action-CartAddModal'));
         let productId = $(e.target).data('product-id')
-        console.log({
-            product_id: productId,
-            quantity: 1,
-        })
 
         $.ajax({
-            url: 'baskets/product/',
+            url: '/baskets/product/increment/',
             type: 'post',
             data: {
                 product_id: productId,
@@ -214,6 +210,27 @@
             }
         })
     })
+
+    $('.product-remove-link').click((e) => {
+        e.preventDefault()
+        let productId = $(e.target).data('product-id')
+        $.ajax({
+            url: '/baskets/product/update/',
+            type: 'post',
+            data: {
+                product_id: productId,
+                quantity: 0,
+            },
+            headers: {'X-CSRFToken': csrftoken},
+            dataType: 'json',
+            success: function (data) {
+                let productRowBlock = $('.product-row-' + productId)
+                productRowBlock.remove()
+                $(".order-total .amount").text(data.total +" ₽")
+            }
+        })
+    })
+
 
 
 })(window.jQuery);

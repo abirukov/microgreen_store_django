@@ -16,7 +16,7 @@ class Basket(models.Model):
     def __str__(self) -> str:
         return f"{self.user_id}_{self.id}"
 
-    def json(self) -> str:
+    def as_dict(self) -> dict:
         basket_products = self.basketproduct_set.select_related("product").all()
         data = {
             "id": self.id,
@@ -41,7 +41,10 @@ class Basket(models.Model):
             total = total + row_sum
         data["base_total"] = base_total
         data["total"] = total
-        return json.dumps(data)
+        return data
+
+    def json(self) -> str:
+        return json.dumps(self.as_dict())
 
 
 class BasketProduct(models.Model):

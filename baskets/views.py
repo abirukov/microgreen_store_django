@@ -1,27 +1,29 @@
-from typing import Any
 
-from django import views
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.serializers import serialize
 from django.http import HttpResponse, HttpRequest
-from django.views.generic import DetailView
+from django.shortcuts import render
+from django.views import View
 
-from baskets.models import Basket, BasketProduct
+from baskets.models import BasketProduct
 from products.models import Product
 
 
-class BasketDetailView(DetailView):
-    model = Basket
-    template_name = "baskets/detail.html"
+class BasketDetailView(View):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        basket = request.user.basket
+        return render(
+            request,
+            "baskets/detail.html",
+            context={
+                "user": self.request.user,
+                "basket": basket.as_dict(),
+            },
+        )
 
-    def get_context_data(self, **kwargs: dict[str, Any]) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        return context
 
-
-class BasketProductView(views.View):
+class BasketProductView(View):
     def post(self, request: HttpRequest) -> HttpResponse:
-        if not self.check_needle_values():
+        if not check_needle_values(request):
             return HttpResponse(status=400)
 
         try:
@@ -46,38 +48,46 @@ class BasketProductView(views.View):
         data = basket.json()
         return HttpResponse(data, content_type="application/json")
 
-    def update(self, request: HttpRequest) -> HttpResponse:
-        if not self.check_needle_values():
+
+class BasketProductUpdateView(View):
+    def post(self, request: HttpRequest) -> HttpResponse:
+        if not check_needle_values(request):
             return HttpResponse(status=400)
 
+        product_id = self.request.POST.get("product_id", False)
+        quantity = self.request.POST.get("quantity", False)
+
         try:
-            product = Product.objects.get(pk=self.request.POST["product_id"])
+            product = Product.objects.get(pk=product_id)
         except ObjectDoesNotExist:
             return HttpResponse(status=400)
 
         basket = self.request.user.basket
-        if product in basket.products:
+        basket_products = basket.products.all()
+        if product in basket_products and int(quantity) > 0:
             basket_product = basket.basketproduct_set.filter(
                 product_id=product.id,
             ).first()
-            basket_product.quantity = self.request.POST["quantity"]
+            basket_product.quantity = quantity
             basket_product.save()
+        if product in basket_products and int(quantity) <= 0:
+            basket_product = basket.basketproduct_set.filter(
+                product_id=product.id,
+            ).first()
+            basket_product.delete()
         else:
             BasketProduct(
                 basket_id=basket.id,
                 product_id=product.id,
-                quantity=self.request.POST["quantity"],
+                quantity=quantity,
                 unit_price=product.price,
             ).save()
-
-        basket = Basket.objects.filter(
-            user_id=self.request.user.id,
-        ).prefetch_related('products').first()
-        data = serialize("json", [basket])
+        data = basket.json()
         return HttpResponse(data, content_type="application/json")
 
-    def check_needle_values(self):
-        return (
-            self.request.POST.get("product_id", False)
-            and self.request.POST.get("quantity", False)
-        )
+
+def check_needle_values(request: HttpRequest):
+    return (
+        request.POST["product_id"]
+        and request.POST["quantity"]
+    )
