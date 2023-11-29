@@ -48,7 +48,7 @@ class Order(Timestampable, SoftDeletes):
                     "unit_price": float(order_product.unit_price),
                     "row_sum": row_sum,
                     "row_base_sum": row_base_sum,
-                    "image_url": order_product.product.image.url,
+                    "image_url": order_product.product.image.url if order_product.product.image else None,
                 },
             )
             base_total = base_total + row_base_sum

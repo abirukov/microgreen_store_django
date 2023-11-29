@@ -15,6 +15,7 @@ class AppConfig:
     db_user: str = "postgres"
     db_password: str = "postgres"
     debug: bool = False
+    admin_tg_id: str = None
 
 
 def get_config() -> AppConfig:
@@ -26,4 +27,5 @@ def get_config() -> AppConfig:
         db_user=os.environ["DB_USER"],
         db_password=os.environ["DB_PASSWORD"],
         debug=bool(os.environ["DEBUG"]),
+        admin_tg_id=str(os.environ["ADMIN_TG_ID"]),
     )
