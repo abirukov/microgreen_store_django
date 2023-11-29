@@ -1,6 +1,5 @@
-
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 
@@ -74,7 +73,7 @@ class BasketProductUpdateView(View):
             basket_product = basket.basketproduct_set.filter(
                 product_id=product.id,
             ).first()
-            basket_product.delete()
+            basket_product.delete(hard=True)
         else:
             BasketProduct(
                 basket_id=basket.id,
@@ -86,8 +85,5 @@ class BasketProductUpdateView(View):
         return HttpResponse(data, content_type="application/json")
 
 
-def check_needle_values(request: HttpRequest):
-    return (
-        request.POST["product_id"]
-        and request.POST["quantity"]
-    )
+def check_needle_values(request: HttpRequest) -> bool:
+    return bool(request.POST["product_id"] and request.POST["quantity"])

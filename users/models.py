@@ -1,9 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from timestamps.models import SoftDeletes, Timestampable
 
 
-class User(AbstractUser):
+class User(AbstractUser, Timestampable, SoftDeletes):
     phone = models.CharField(_("phone"), max_length=20, null=True)
     tg_id = models.CharField(_("tg_id"), max_length=20, null=True)
     tg_username = models.CharField(_("tg_username"), max_length=50, null=True)

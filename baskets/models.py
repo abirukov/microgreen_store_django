@@ -1,8 +1,8 @@
 import json
 
-from django.core.serializers import serialize
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from timestamps.models import SoftDeletes, Timestampable
 
 
 class Basket(models.Model):
@@ -23,20 +23,24 @@ class Basket(models.Model):
             "user_id": self.user_id,
             "products": [],
         }
-        total = 0
-        base_total = 0
+        total = 0.0
+        base_total = 0.0
         for basket_product in basket_products:
             row_sum = float(round(basket_product.quantity * basket_product.unit_price))
-            row_base_sum = float(round(basket_product.quantity * basket_product.product.price))
-            data["products"].append({
-                "id": basket_product.product_id,
-                "title": basket_product.product.title,
-                "quantity": int(basket_product.quantity),
-                "base_price": float(basket_product.product.price),
-                "unit_price": float(basket_product.unit_price),
-                "row_sum": row_sum,
-                "row_base_sum": row_base_sum,
-            })
+            row_base_sum = float(
+                round(basket_product.quantity * basket_product.product.price),
+            )
+            data["products"].append(
+                {
+                    "id": basket_product.product_id,
+                    "title": basket_product.product.title,
+                    "quantity": int(basket_product.quantity),
+                    "base_price": float(basket_product.product.price),
+                    "unit_price": float(basket_product.unit_price),
+                    "row_sum": row_sum,
+                    "row_base_sum": row_base_sum,
+                },
+            )
             base_total = base_total + row_base_sum
             total = total + row_sum
         data["base_total"] = base_total
@@ -47,7 +51,7 @@ class Basket(models.Model):
         return json.dumps(self.as_dict())
 
 
-class BasketProduct(models.Model):
+class BasketProduct(Timestampable, SoftDeletes):
     basket = models.ForeignKey(Basket, on_delete=models.PROTECT)
     product = models.ForeignKey("products.Product", on_delete=models.PROTECT)
     quantity = models.DecimalField(_("quantity"), max_digits=20, decimal_places=2)

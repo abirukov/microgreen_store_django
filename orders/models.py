@@ -1,15 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from timestamps.models import Timestampable, SoftDeletes
 
 
-class OrderStatus(models.Model):
+class OrderStatus(Timestampable, SoftDeletes):
     title = models.CharField(_("title"))
 
     def __str__(self) -> str:
         return self.title
 
 
-class Order(models.Model):
+class Order(Timestampable, SoftDeletes):
     comment = models.TextField(_("comment"))
     total = models.DecimalField(_("total"), max_digits=20, decimal_places=2)
 
@@ -26,7 +27,7 @@ class Order(models.Model):
         return f"{self.user_id}_{self.id}"
 
 
-class OrderProduct(models.Model):
+class OrderProduct(Timestampable, SoftDeletes):
     order = models.ForeignKey("orders.Order", on_delete=models.PROTECT)
     product = models.ForeignKey("products.Product", on_delete=models.PROTECT)
     quantity = models.DecimalField(_("quantity"), max_digits=20, decimal_places=2)
