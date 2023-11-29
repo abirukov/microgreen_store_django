@@ -24,9 +24,9 @@ from microgreen_store import settings
 from microgreen_store.views import AboutUsView, IndexView
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="home"),
-    path("about/", AboutUsView.as_view(), name="about"),
-    path("faq/", FaqView.as_view(), name="faq"),
+    path("", login_required(IndexView.as_view()), name="home"),
+    path("about/", login_required(AboutUsView.as_view()), name="about"),
+    path("faq/", login_required(FaqView.as_view()), name="faq"),
     path("users/", include(("users.urls", "users"), namespace="users")),
     path("products/", include(("products.urls", "products"), namespace="products")),
     path("baskets/", include(("baskets.urls", "baskets"), namespace="baskets")),
