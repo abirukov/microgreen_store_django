@@ -39,6 +39,7 @@ class Basket(models.Model):
                     "unit_price": float(basket_product.unit_price),
                     "row_sum": row_sum,
                     "row_base_sum": row_base_sum,
+                    "image_url": basket_product.product.image.url if basket_product.product.image else None,
                 },
             )
             base_total = base_total + row_base_sum
