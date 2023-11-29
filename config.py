@@ -14,6 +14,7 @@ class AppConfig:
     db_port: int = 5432
     db_user: str = "postgres"
     db_password: str = "postgres"
+    debug: bool = False
 
 
 def get_config() -> AppConfig:
@@ -24,4 +25,5 @@ def get_config() -> AppConfig:
         db_port=int(os.environ["DB_PORT"]),
         db_user=os.environ["DB_USER"],
         db_password=os.environ["DB_PASSWORD"],
+        debug=bool(os.environ["DEBUG"]),
     )

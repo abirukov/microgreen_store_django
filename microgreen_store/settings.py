@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-v1yh+mm%lg1)r#&vioilsf^30$&tn*b)e-m)*(b_^y=!+-osgm"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+config = get_config()
+DEBUG = config.debug
 
-ALLOWED_HOSTS: list[str | None] = []
-
+ALLOWED_HOSTS: list[str | None] = ['127.0.0.1']
 
 # Application definition
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = "microgreen_store.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-config = get_config()
+
 DATABASES = {
     "default": {
         "ENGINE": config.db_engine,
@@ -130,8 +130,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = ["static/"]
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

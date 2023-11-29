@@ -21,7 +21,12 @@ from django.urls import include, path
 
 from faq_questions.views import FaqView
 from microgreen_store import settings
-from microgreen_store.views import AboutUsView, IndexView
+from microgreen_store.views import AboutUsView, IndexView, page_not_found, bad_request, forbidden, server_error
+
+handler400 = bad_request
+handler403 = forbidden
+handler404 = page_not_found
+handler500 = server_error
 
 urlpatterns = [
     path("", login_required(IndexView.as_view()), name="home"),
@@ -31,10 +36,6 @@ urlpatterns = [
     path("products/", include(("products.urls", "products"), namespace="products")),
     path("baskets/", include(("baskets.urls", "baskets"), namespace="baskets")),
     path("orders/", include(("orders.urls", "orders"), namespace="orders")),
-    path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# handler400 =
-# handler403 =
-# handler404 =
-# handler500 =
+
