@@ -6,6 +6,7 @@ class Product(models.Model):
     title = models.CharField(_("title"))
     price = models.DecimalField(_("price"), max_digits=20, decimal_places=2)
     description = models.CharField(_("description"), null=True)
+    image = models.ImageField(upload_to="images/product", null=True)
 
     category = models.ForeignKey(
         "categories.Category",
