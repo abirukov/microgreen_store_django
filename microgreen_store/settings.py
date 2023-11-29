@@ -143,3 +143,4 @@ LOGOUT_REDIRECT_URL = "home"
 
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads/")
+LOGIN_URL = 'users:login'
