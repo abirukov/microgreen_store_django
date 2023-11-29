@@ -9,11 +9,13 @@ class RegisterForm(UserCreationForm):
         max_length=30,
         required=True,
         help_text="Необходимо. Введите имя пользователя",
+        label="Логин",
     )
     email = forms.CharField(
         max_length=30,
         required=True,
         help_text="Необходимо. Введите свой email",
+        label="Email",
     )
 
     class Meta:
