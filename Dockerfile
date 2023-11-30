@@ -24,4 +24,5 @@ RUN poetry config virtualenvs.create false \
 # Creating folders, and files for a project:
 COPY . /code
 
+CMD [ "python3", "manage.py", "migrate" ]
 CMD [ "python3", "manage.py", "runserver", "0.0.0.0:5000" ]
