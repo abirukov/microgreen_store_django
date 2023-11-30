@@ -150,3 +150,5 @@ LOGOUT_REDIRECT_URL = "home"
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads/")
 LOGIN_URL = "users:login"
+
+CSRF_TRUSTED_ORIGINS = ["https://*.green-beaver.ru", "https://*.127.0.0.1", "https://*.0.0.0.0"]
