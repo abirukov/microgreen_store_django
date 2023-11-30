@@ -110,3 +110,4 @@ venv.bak/
 
 .envrc
 /uploads/
+/static/
