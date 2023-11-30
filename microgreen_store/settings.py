@@ -26,7 +26,7 @@ config = get_config()
 SECRET_KEY = config.secret_key
 DEBUG = config.debug
 
-ALLOWED_HOSTS: list[str | None] = ["127.0.0.1"]
+ALLOWED_HOSTS: list[str | None] = ["0.0.0.0"]
 
 sentry_sdk.init(
     dsn=config.sentry_dsn,
