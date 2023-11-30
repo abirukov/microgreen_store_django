@@ -12,7 +12,8 @@
                                 <img src="{{ product.image.url }}" width="570" height="693"
                                      alt="Фото товара">
                             {% else %}
-                                <img src="{% static "assets/images/shop/product-details/2.webp" %}" width="570" height="693"
+                                <img src="{% static "assets/images/shop/product-details/2.webp" %}" width="570"
+                                     height="693"
                                      alt="Фото товара">
                             {% endif %}
                         </div>
@@ -24,13 +25,17 @@
                             <p class="mb-7">{{ product.description }}</p>
                             <div class="product-details-pro-qty">
                                 <div class="pro-qty">
-                                    <input type="text" title="Quantity" value="1">
+                                    <input class="product-details-quantity"
+                                           data-product-id="{{ product.id }}"
+                                           type="text"
+                                           title="Quantity"
+                                           value="1">
                                 </div>
                             </div>
                             <div class="product-details-action">
                                 <h4 class="price">{{ product.price }} ₽</h4>
                                 <div class="product-details-cart-wishlist">
-                                    <button type="button" class="btn"
+                                    <button type="button" class="btn product-details-action-btn-cart"
                                     >В корзину
                                     </button>
                                 </div>

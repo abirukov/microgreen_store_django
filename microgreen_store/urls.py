@@ -36,6 +36,7 @@ urlpatterns = [
     path("products/", include(("products.urls", "products"), namespace="products")),
     path("baskets/", include(("baskets.urls", "baskets"), namespace="baskets")),
     path("orders/", include(("orders.urls", "orders"), namespace="orders")),
+    path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

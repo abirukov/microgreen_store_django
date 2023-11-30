@@ -27,7 +27,7 @@
         $(".header-navigation li").each(function () {
             $(this).removeClass("active");
         });
-        if (hash != "")
+        if (hash !== "")
             $(".header-navigation li a[href='" + hash + "']").parents("li").addClass("active");
         else
             $(".header-navigation li a[href='" + curpage + "']").parents("li").addClass("active");
@@ -192,7 +192,6 @@
 
     // AddCart
     $('.action-btn-cart').click((e) => {
-        console.log(e)
         const modal = new bootstrap.Modal($('#action-CartAddModal'));
         let productId = $(e.target).data('product-id')
 
@@ -226,11 +225,28 @@
             success: function (data) {
                 let productRowBlock = $('.product-row-' + productId)
                 productRowBlock.remove()
-                $(".order-total .amount").text(data.total +" ₽")
+                $(".order-total .amount").text(data.total + " ₽")
             }
         })
     })
 
+    $('.product-details-action-btn-cart').click(() => {
+        const modal = new bootstrap.Modal($('#action-CartAddModal'));
+        let productInput = $(".product-details-quantity")
+        $.ajax({
+            url: '/baskets/product/update/',
+            type: 'post',
+            data: {
+                product_id: productInput.data('product-id'),
+                quantity: productInput.val(),
+            },
+            headers: {'X-CSRFToken': csrftoken},
+            dataType: 'json',
+            success: function (data) {
+                modal.show();
+            }
+        })
+    })
 
 
 })(window.jQuery);
