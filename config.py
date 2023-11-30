@@ -1,5 +1,6 @@
 import dataclasses
 import os
+from distutils.util import strtobool
 
 from dotenv import load_dotenv
 
@@ -28,7 +29,7 @@ def get_config() -> AppConfig:
         db_port=int(os.environ["DB_PORT"]),
         db_user=os.environ["DB_USER"],
         db_password=os.environ["DB_PASSWORD"],
-        debug=bool(os.environ["DEBUG"]),
+        debug=bool(strtobool(os.getenv("DEBUG", "false"))),
         admin_tg_id=str(os.environ["ADMIN_TG_ID"]),
         sentry_dsn=os.environ["SENTRY_DSN"],
         secret_key=os.environ["DJANGO_SECRET_KEY"],
