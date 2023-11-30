@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-v1yh+mm%lg1)r#&vioilsf^30$&tn*b)e-m)*(b_^y=!+-osgm
 config = get_config()
 DEBUG = config.debug
 
-ALLOWED_HOSTS: list[str | None] = ['127.0.0.1']
+ALLOWED_HOSTS: list[str | None] = ["127.0.0.1"]
 
 # Application definition
 
@@ -131,8 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
 
 
 # Default primary key field type
@@ -145,4 +144,4 @@ LOGOUT_REDIRECT_URL = "home"
 
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads/")
-LOGIN_URL = 'users:login'
+LOGIN_URL = "users:login"

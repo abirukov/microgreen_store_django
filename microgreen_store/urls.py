@@ -21,7 +21,7 @@ from django.urls import include, path
 
 from faq_questions.views import FaqView
 from microgreen_store import settings
-from microgreen_store.views import AboutUsView, IndexView, page_not_found, bad_request, forbidden, server_error
+from microgreen_store.views import AboutUsView, IndexView, bad_request, forbidden, page_not_found, server_error
 
 handler400 = bad_request
 handler403 = forbidden
@@ -38,5 +38,3 @@ urlpatterns = [
     path("orders/", include(("orders.urls", "orders"), namespace="orders")),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

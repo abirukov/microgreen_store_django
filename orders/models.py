@@ -2,7 +2,7 @@ import json
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from timestamps.models import Timestampable, SoftDeletes
+from timestamps.models import SoftDeletes, Timestampable
 
 
 class OrderStatus(Timestampable, SoftDeletes):
@@ -48,7 +48,9 @@ class Order(Timestampable, SoftDeletes):
                     "unit_price": float(order_product.unit_price),
                     "row_sum": row_sum,
                     "row_base_sum": row_base_sum,
-                    "image_url": order_product.product.image.url if order_product.product.image else None,
+                    "image_url": order_product.product.image.url
+                    if order_product.product.image
+                    else None,
                 },
             )
             base_total = base_total + row_base_sum

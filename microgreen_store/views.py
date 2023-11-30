@@ -1,4 +1,7 @@
-from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
+from typing import Any
+
+from django.core.handlers.wsgi import WSGIRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 
@@ -29,10 +32,10 @@ class AboutUsView(View):
         )
 
 
-def page_not_found(request, exception):
+def page_not_found(request: WSGIRequest, exception: Any) -> HttpResponse:
     return render(
         request,
-        'exceptions.html',
+        "exceptions.html",
         status=404,
         context={
             "status": 404,
@@ -41,10 +44,10 @@ def page_not_found(request, exception):
     )
 
 
-def forbidden(request, exception):
+def forbidden(request: WSGIRequest, exception: Any) -> HttpResponse:
     return render(
         request,
-        'exceptions.html',
+        "exceptions.html",
         status=403,
         context={
             "status": 403,
@@ -53,10 +56,10 @@ def forbidden(request, exception):
     )
 
 
-def bad_request(request, exception):
+def bad_request(request: WSGIRequest, exception: Any) -> HttpResponse:
     return render(
         request,
-        'exceptions.html',
+        "exceptions.html",
         status=400,
         context={
             "status": 400,
@@ -65,10 +68,10 @@ def bad_request(request, exception):
     )
 
 
-def server_error(request):
+def server_error(request: WSGIRequest) -> HttpResponse:
     return render(
         request,
-        'exceptions.html',
+        "exceptions.html",
         status=500,
         context={
             "status": 500,

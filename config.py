@@ -15,7 +15,7 @@ class AppConfig:
     db_user: str = "postgres"
     db_password: str = "postgres"
     debug: bool = False
-    admin_tg_id: str = None
+    admin_tg_id: str | None = None
 
 
 def get_config() -> AppConfig:

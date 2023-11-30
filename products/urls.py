@@ -5,5 +5,9 @@ from products.views import ProductDetailView, ProductListView
 
 urlpatterns = [
     path("list/", login_required(ProductListView.as_view()), name="list"),
-    path("<int:product_id>/", login_required(ProductDetailView.as_view()), name="detail"),
+    path(
+        "<int:product_id>/",
+        login_required(ProductDetailView.as_view()),
+        name="detail",
+    ),
 ]

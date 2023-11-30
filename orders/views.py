@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.views.generic import DetailView, FormView, TemplateView
 
-from baskets.utils import move_products_from_basket_to_order, clear_basket
+from baskets.utils import clear_basket, move_products_from_basket_to_order
 from microgreen_store.notifications.telegram import notify_about_order
 from orders.forms import OrderCheckoutForm
 from orders.models import Order, OrderStatus
@@ -31,9 +31,7 @@ class OrderCheckoutView(FormView):
             user=self.request.user,
             comment=form_data["comment"],
             total=basket_dict["total"],
-            status=OrderStatus.objects.filter(
-                title="Ждет подтверждения"
-            ).first()
+            status=OrderStatus.objects.filter(title="Ждет подтверждения").first(),
         )
         move_products_from_basket_to_order(
             basket_dict,
@@ -45,10 +43,10 @@ class OrderCheckoutView(FormView):
 
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
-        context['basket'] = self.request.user.basket.as_dict()
+        context["user"] = self.request.user
+        context["basket"] = self.request.user.basket.as_dict()
         return context
 
 
@@ -71,4 +69,3 @@ class OrderAfterCheckoutView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["order"] = Order.objects.filter(id=kwargs["id"]).first().as_dict()
         return context
-

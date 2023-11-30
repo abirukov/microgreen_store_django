@@ -12,17 +12,17 @@ def notify_about_order(order: Order) -> None:
 
 def prepare_text(order: Order) -> str:
     order_dict = order.as_dict()
-    text = f"Сделан заказ № {order_dict["id"]} на сумму {order_dict["total"]} рублей\nТовары:\n"
+    text = f"Сделан заказ № {order_dict['id']} на сумму {order_dict['total']} рублей\nТовары:\n"  # noqa: Q000
     for product in order_dict["products"]:
-        text += f"\t{product["title"]}: {product["quantity"]} шт. по {product["unit_price"]} руб.\n"
+        text += f"\t{product['title']}: {product['quantity']} шт. по {product['unit_price']} руб.\n"  # noqa: Q000
     return text
 
 
 def send_message(chat_id: str, text: str) -> None:
     requests.post(
-        'https://bot.green-beaver.ru/send_message',
+        "https://bot.green-beaver.ru/send_message",
         json={
-            'chat_id': chat_id,
-            'text': text,
+            "chat_id": chat_id,
+            "text": text,
         },
     )
