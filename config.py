@@ -16,6 +16,8 @@ class AppConfig:
     db_password: str = "postgres"
     debug: bool = False
     admin_tg_id: str | None = None
+    sentry_dsn: str | None = None
+    secret_key: str
 
 
 def get_config() -> AppConfig:
@@ -28,4 +30,6 @@ def get_config() -> AppConfig:
         db_password=os.environ["DB_PASSWORD"],
         debug=bool(os.environ["DEBUG"]),
         admin_tg_id=str(os.environ["ADMIN_TG_ID"]),
+        sentry_dsn=os.environ["SENTRY_DSN"],
+        secret_key=os.environ["DJANGO_SECRET_KEY"],
     )

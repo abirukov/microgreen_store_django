@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import sentry_sdk
+
 from pathlib import Path
 
 from config import get_config
@@ -21,14 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-v1yh+mm%lg1)r#&vioilsf^30$&tn*b)e-m)*(b_^y=!+-osgm"
-
-# SECURITY WARNING: don't run with debug turned on in production!
 config = get_config()
+SECRET_KEY = config.secret_key
 DEBUG = config.debug
 
 ALLOWED_HOSTS: list[str | None] = ["127.0.0.1"]
+
+sentry_sdk.init(
+    dsn=config.sentry_dsn,
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+)
 
 # Application definition
 
