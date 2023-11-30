@@ -15,6 +15,7 @@ def prepare_text(order: Order) -> str:
     text = f"Сделан заказ № {order_dict['id']} на сумму {order_dict['total']} рублей\nТовары:\n"  # noqa: Q000
     for product in order_dict["products"]:
         text += f"\t{product['title']}: {product['quantity']} шт. по {product['unit_price']} руб.\n"  # noqa: Q000
+    text += f"\n{order.comment}"
     return text
 
 

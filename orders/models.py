@@ -57,6 +57,8 @@ class Order(Timestampable, SoftDeletes):
             total = total + row_sum
         data["base_total"] = base_total
         data["total"] = total
+        data["comment"] = self.comment,
+        data["status"] = self.status.title,
         return data
 
     def json(self) -> str:
