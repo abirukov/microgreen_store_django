@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from timestamps.models import SoftDeletes, Timestampable
 
 
-class Product(models.Model):
+class Product(Timestampable, SoftDeletes):
     title = models.CharField(_("title"))
     price = models.DecimalField(_("price"), max_digits=20, decimal_places=2)
     description = models.CharField(_("description"), null=True)
+    image = models.ImageField(upload_to="images/product", null=True)
 
     category = models.ForeignKey(
         "categories.Category",
@@ -13,5 +15,6 @@ class Product(models.Model):
         related_name="category",
         null=True,
     )
-    # orders = models.ManyToManyField("orders.Order", through="orders.OrderProduct", related_name="products")
-    # baskets = models.ManyToManyField("baskets.Basket", through="baskets.BasketProduct", related_name="products")
+
+    def __str__(self) -> str:
+        return self.title

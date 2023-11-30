@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="main-content">
+        <section class="section-space">
+            <div class="container">
+                <div class="row mb-n8">
+                    <div class="col-lg-6 mb-8">
+                        <div class="order-item-wrap">
+                            <div class="order-item-title">
+                                <h3 class="title">Заказ номер {{ order.id }} оформлен</h3>
+                            </div>
+                            <table class="table text-center">
+                                <thead>
+                                <tr>
+                                    <th class="product-thumbnail">&nbsp;</th>
+                                    <th class="product-name">Товар</th>
+                                    <th class="product-price">Цена</th>
+                                    <th class="product-quantity">Количество</th>
+                                    <th class="product-subtotal">Итог</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for product in order.products %}
+                                    <tr class="tbody-item product-row-{{ product.id }}">
+                                        <td class="product-thumbnail">
+                                            <div class="thumb">
+                                                <a href="{% url "products:detail" product.id %}">
+                                                    {% if product.image_url %}
+                                                        <img src="{{ product.image_url }}" width="68" height="84"
+                                                             alt="Изображение товара">
+                                                    {% else %}
+                                                        <img src="{% static "assets/images/shop/1.webp" %}" width="68"
+                                                             height="84"
+                                                             alt="Изображение товара">
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td class="product-name">
+                                            <a class="title"
+                                               href="{% url "products:detail" product.id %}">
+                                                {{ product.title }}
+                                            </a>
+                                        </td>
+                                        <td class="product-price">
+                                            <span class="price">{{ product.unit_price }} ₽</span>
+                                        </td>
+                                        <td class="product-quantity">
+                                            {{ product.quantity }}
+                                        </td>
+                                        <td class="product-subtotal">
+                                            <span class="price">{{ product.row_sum }} ₽</span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+{% include "head.html" %}
+<body>
+    <!--== Wrapper Start ==-->
+    <div class="wrapper">
+        {% include "header.html" %}
+        {% block content %} {% endblock %}
+        {% include "footer.html" %}
+        {% include "includes/scroll_to_top_button.html" %}
+        {% include "includes/modals_and_aside.html" %}
+
+    </div>
+    <!--== Wrapper End ==-->
+</body>
+</html>

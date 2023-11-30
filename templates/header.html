@@ -1,0 +1,57 @@
+{% load static %}
+<!--== Start Header Wrapper ==-->
+<header class="header-area sticky-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-5 col-sm-6 col-lg-3">
+                <div class="header-logo">
+                    <a href="{% url "home" %}">
+                        <img class="logo-main" src="{% static "assets/images/small_logo.png" %}" width="95" height="68"
+                             alt="Logo"/>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="header-navigation">
+                    <ul class="main-nav justify-content-start">
+                        <li><a href="{% url "home" %}">Главная</a></li>
+                        <li><a href="{% url "products:list" %}">Товары</a></li>
+                        <li><a href="{% url "about" %}">О нас</a></li>
+                        <li><a href="{% url "faq" %}">Частые вопросы</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-7 col-sm-6 col-lg-3">
+                <div class="header-action justify-content-end">
+                    <a class="header-action-btn"
+                       type="button"
+                       href="{% url "baskets:detail" %}"
+                    >
+                        <span class="icon">
+                            {% include "includes/icons/basket-icon.html" %}
+                        </span>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <a class="mx-3" href="{% url "users:account" %}">
+                            <span> Привет, {{ user.username }}</span>
+                        </a>
+                    {% else %}
+                        <a class="header-action-btn" href="{% url "users:login" %}">
+                            <span class="icon">
+                                {% include "includes/icons/account-icon.html" %}
+                            </span>
+                        </a>
+                    {% endif %}
+
+                    <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--== End Header Wrapper ==-->

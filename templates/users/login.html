@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main-content">
+    <!--== Start Account Area Wrapper ==-->
+    <section class="section-space">
+        <div class="container">
+            <div class="row mb-n8">
+                <div class="col-lg-6 mb-8">
+                    <!--== Start Login Area Wrapper ==-->
+                    <div class="my-account-item-wrap">
+                        <div class="login-title">
+                            <h3 class="title">Вход</h3>
+                            <a class="not-registered" href="{% url "users:register" %}">Не зарегистрированы?</a>
+                        </div>
+                        <div class="my-account-form">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group mb-6">
+                                    <label for="username">Имя пользователя <sup>*</sup></label>
+                                    <input type="text" id="username" name="username">
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label for="password">Пароль <sup>*</sup></label>
+                                    <input type="password" id="password" name="password">
+                                </div>
+                                <div class="form-group d-flex align-items-center mb-14">
+                                    <button class="btn" type="submit">Войти</button>
+                                </div>
+                                <a class="lost-password" href="my-account.html">Забыли свой пароль?</a>
+                            </form>
+                        </div>
+                    </div>
+                    <!--== End Login Area Wrapper ==-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End Account Area Wrapper ==-->
+
+</main>
+{% endblock %}

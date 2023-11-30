@@ -14,10 +14,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import include, path
 
+from faq_questions.views import FaqView
+from microgreen_store import settings
+from microgreen_store.views import AboutUsView, IndexView, bad_request, forbidden, page_not_found, server_error
+
+handler400 = bad_request
+handler403 = forbidden
+handler404 = page_not_found
+handler500 = server_error
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("", login_required(IndexView.as_view()), name="home"),
+    path("about/", login_required(AboutUsView.as_view()), name="about"),
+    path("faq/", login_required(FaqView.as_view()), name="faq"),
     path("users/", include(("users.urls", "users"), namespace="users")),
-]
+    path("products/", include(("products.urls", "products"), namespace="products")),
+    path("baskets/", include(("baskets.urls", "baskets"), namespace="baskets")),
+    path("orders/", include(("orders.urls", "orders"), namespace="orders")),
+    path("admin/", admin.site.urls),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

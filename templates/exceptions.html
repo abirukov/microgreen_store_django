@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <main class="main-content">
+            <!--== Start Faq Area Wrapper ==-->
+            <section class="page-not-found-area">
+                <div class="container">
+                    <div class="page-not-found">
+                        <img src="{% static "assets/images/exception.jpg" %}" width="975" height="538" alt="Image">
+                        <h3 class="title">{{ description }}</h3>
+                        {% if status == 400 or status == 500 %}
+                            <h5 class="back-btn">
+                                <a href="https://t.me/green_beaver_67" target="_blank">Напишите нам в Telegram</a>
+                            </h5>
+                        {% endif %}
+                        <h5 class="back-btn"><a href="{% url "home" %}">На главную</a></h5>
+                    </div>
+                </div>
+            </section>
+            <!--== End Faq Area Wrapper ==-->
+        </main>
+{% endblock %}

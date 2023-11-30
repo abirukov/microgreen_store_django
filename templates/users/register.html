@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main class="main-content">
+    <!--== Start Account Area Wrapper ==-->
+    <section class="section-space">
+        <div class="container">
+            <div class="row mb-n8">
+                <div class="col-lg-6 mb-8">
+                    <!--== Start Register Area Wrapper ==-->
+                    <div class="my-account-item-wrap">
+                        <div class="login-title">
+                            <h3 class="title">Регистрация</h3>
+                            <a class="already-registered" href="{% url "users:login" %}">Уже зарегистрированы?</a>
+                        </div>
+                        <div class="my-account-form">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-error">{{ form.non_field_errors }}</div>
+                                {% for field in form %}
+                                    <div class="form-group mb-6">
+                                        <label for="{{ field.name }}"> {{ field.label }}
+                                            {% if field.field.required %}
+                                                <sup>*</sup>
+                                            {%  endif %}
+                                        </label>
+                                        <input
+                                            type="{{ field.field.widget.input_type }}"
+                                            id="{{ field.name }}"
+                                            name="{{ field.name }}"
+                                        >
+                                        <div class="form-error">{{ field.errors }}</div>
+                                        {% if field.errors %}
+                                            {% for error in field.errors %}
+                                                <div class="invalid-feedback">
+                                                    {{ error }}
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                                <div class="form-group d-flex align-items-center mb-14">
+                                    <button class="btn" type="submit">Зарегистрироваться</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <!--== End Register Area Wrapper ==-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End Account Area Wrapper ==-->
+
+</main>
+{% endblock %}
