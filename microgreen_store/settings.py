@@ -19,7 +19,6 @@ from config import get_config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -27,7 +26,7 @@ config = get_config()
 SECRET_KEY = config.secret_key
 DEBUG = config.debug
 
-ALLOWED_HOSTS: list[str | None] = ["0.0.0.0"]
+ALLOWED_HOSTS: list[str | None] = ["127.0.0.1"]
 
 sentry_sdk.init(
     dsn=config.sentry_dsn,
@@ -85,6 +84,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "microgreen_store.wsgi.application"
 
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -137,11 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
