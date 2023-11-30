@@ -11,7 +11,11 @@ def notify_about_order(order: Order) -> None:
 
 
 def prepare_text(order: Order) -> str:
-    return f'Сделан заказ № {order.id} на сумму {order.total} рублей\n {order.json()}'
+    order_dict = order.as_dict()
+    text = f"Сделан заказ № {order_dict["id"]} на сумму {order_dict["total"]} рублей\nТовары:\n"
+    for product in order_dict["products"]:
+        text += f"\t{product["title"]}: {product["quantity"]} шт. по {product["unit_price"]} руб.\n"
+    return text
 
 
 def send_message(chat_id: str, text: str) -> None:
