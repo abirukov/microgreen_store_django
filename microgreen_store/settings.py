@@ -85,6 +85,9 @@ TEMPLATES = [
 WSGI_APPLICATION = "microgreen_store.wsgi.application"
 
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
