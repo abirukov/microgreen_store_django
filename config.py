@@ -1,4 +1,5 @@
 import dataclasses
+import json
 import os
 from distutils.util import strtobool
 
@@ -18,6 +19,7 @@ class AppConfig:
     debug: bool = False
     admin_tg_id: str | None = None
     sentry_dsn: str | None = None
+    allowed_hosts: list[str | None] = dataclasses.field(default_factory=list)
     secret_key: str
 
 
@@ -33,4 +35,5 @@ def get_config() -> AppConfig:
         admin_tg_id=str(os.environ["ADMIN_TG_ID"]),
         sentry_dsn=os.environ["SENTRY_DSN"],
         secret_key=os.environ["DJANGO_SECRET_KEY"],
+        allowed_hosts=json.loads(os.environ["ALLOWED_HOSTS"]),
     )
